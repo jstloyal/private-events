@@ -1,6 +1,5 @@
+<h1 align='center'>All Events</h1>
 <div class="jumbotron">
-  <p>Event creator: <%= @user.name if @user %></p>
-  <p>Created events: </p>
   <div class="container">
     <table class="table">
       <thead>
@@ -13,13 +12,12 @@
       </thead>
       <tbody>
 
-          <tr><% @user_events.each do |t| %></tr>
+          <tr><% @events.each do |t| %></tr>
             <td><%= t.name %></td>
             <td><%= t.location %></td>
             <td><%= t.date %></td>
             <td><%= t.creator.name %></td>
           <% end %>
-
 
       </tbody>
     </table>
