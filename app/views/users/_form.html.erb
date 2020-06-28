@@ -1,0 +1,6 @@
+<h2>my form</h2>
+<%= form_for(@user) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit "Sign in now!" %>
+<% end %>
