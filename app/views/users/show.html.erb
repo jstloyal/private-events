@@ -28,5 +28,61 @@
 
       </tbody>
     </table>
+
+    <p>Upcoming events: </p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Event name</th>
+          <th>Location</th>
+          <th>Event Date</th>
+          <th>Event Creator</th>
+          <th>Event Attendees</th>
+        </tr>
+      </thead>
+      <tbody>
+
+          <tr><% @upcoming_events.each do |t| %></tr>
+            <td><%= t.name %></td>
+            <td><%= t.location %></td>
+            <td><%= t.date %></td>
+            <td><%= t.creator.name %></td>
+            <td>
+              <% t.attendees.each do |a| %>
+                <%= a.name %>,
+              <% end %>
+            </td>
+          <% end %>
+
+      </tbody>
+    </table>
+
+  <p>Previous events: </p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Event name</th>
+          <th>Location</th>
+          <th>Event Date</th>
+          <th>Event Creator</th>
+          <th>Event Attendees</th>
+        </tr>
+      </thead>
+      <tbody>
+
+          <tr><% @previous_events.each do |t| %></tr>
+            <td><%= t.name %></td>
+            <td><%= t.place %></td>
+            <td><%= t.date %></td>
+            <td><%= t.creator.name %></td>
+            <td>
+              <% t.attendees.each do |a| %>
+                <%= a.name %>,
+              <% end %>
+            </td>
+          <% end %>
+
+      </tbody>
+    </table>
   </div>
 </div>
