@@ -25,8 +25,6 @@ class UsersController < ApplicationController
     @user.save
     session[:name] = @user.name
     session[:id] = @user.id
-    # cookies[:name] = @user.name
-    # cookies[:id] = @user.id
     redirect_to @user
   end
 
