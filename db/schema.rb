@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2020_06_28_233302) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "description"
+    t.index ["name"], name: "index_events_on_name", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

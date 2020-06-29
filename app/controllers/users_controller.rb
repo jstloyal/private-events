@@ -9,19 +9,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+    @user_events = @user.all
+  end
+
   def create
     @user = User.new(user_params)
     @user.save
     session[:user_name] = @user.name
     session[:id] = @user.id
-    cookies[:name] = @user.name
-    cookies[:id] = @user.id
+    # cookies[:name] = @user.name
+    # cookies[:id] = @user.id
     redirect_to @user
-  end
-
-  def show
-    @user = User.all
-    @user_events = @user.created_events
   end
 
   private

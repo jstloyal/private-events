@@ -7,5 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user = User.create!(name: "akanmu")
-user.created_events.create!(name: "birthday", place: "Eko Hotel", date: Time.now)
-user.created_events.create!(name: "wedding", place: "Civic Center", date: 2.days.from_now)
+user.created_events.create!(name: "birthday", location: "Eko Hotel", date: Time.now)
+user.created_events.create!(name: "wedding", locatio: "Civic Center", date: 2.days.from_now)
