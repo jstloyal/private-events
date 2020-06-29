@@ -17,7 +17,7 @@ class EventsController < ApplicationController
   def create
     @user = current_user
     @event = @user.created_events.build(event_params)
-    @event.date = 1.week.from_now
+    # @event.date = 1.week.from_now
     @event.save
     flash[:success] = "Event has been succesfully saved"
     redirect_to events_path

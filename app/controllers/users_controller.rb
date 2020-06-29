@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def new
-    if session[:user_name].nil?
+    if session[:name].nil?
       @user = User.new
     else
       @user = User.find(session[:id])
@@ -9,17 +9,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    @user = User.all
+  end
+
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by(params[:id])
     @created_events = @user.created_events
-    @upcoming_events = current_user.upcoming_events
-    @previous_events = current_user.previous_events
+    @upcoming_events = @user.upcoming_events
+    @previous_events = @user.previous_events
   end
 
   def create
     @user = User.new(user_params)
     @user.save
-    session[:user_name] = @user.name
+    session[:name] = @user.name
     session[:id] = @user.id
     # cookies[:name] = @user.name
     # cookies[:id] = @user.id

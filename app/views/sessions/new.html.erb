@@ -1,0 +1,8 @@
+<div class="jumbotron">
+  <%= form_for :session, url: sessions_path do |f| %>
+    <%= f.label :name, 'Name from first time you signed in' %>
+    <%= f.text_field :name %>
+
+    <%= f.submit "Log in" %>
+  <% end %>
+</div>
