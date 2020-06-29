@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    # empty
   end
 
   def create
@@ -10,7 +11,7 @@ class SessionsController < ApplicationController
       flash[:success] = "You have been succesfully signed in as #{@user.name}"
       redirect_to @user
     else
-      flash[:warning] = "There is no such user"
+      flash[:warning] = 'There is no such user'
       render 'new'
     end
   end
@@ -19,7 +20,7 @@ class SessionsController < ApplicationController
     session.delete(:name)
     session.delete(:id)
     @current_user = nil
-    flash[:success] = "You have been signed out succesfully"
+    flash[:success] = 'You have been signed out succesfully'
     redirect_to root_url
   end
 end

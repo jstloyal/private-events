@@ -4,7 +4,7 @@ class UsersController < ApplicationController
       @user = User.new
     else
       @user = User.find(session[:id])
-      flash[:info] = "You are already signed in"
+      flash[:info] = 'You are already signed in'
       redirect_to @user
     end
   end
