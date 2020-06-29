@@ -1,6 +1,5 @@
 <div class="jumbotron">
-  <p>Event creator: <%= @user.name if @user %></p>
-  <p>Created events: </p>
+  <h2>User profile page: <%= @user.name if @user %></h2>
   <div class="container">
     <table class="table">
       <thead>
@@ -9,15 +8,21 @@
           <th>Location</th>
           <th>Event Date</th>
           <th>Event Creator</th>
+          <th>Attendees</th>
         </tr>
       </thead>
       <tbody>
 
-          <tr><% @user_events.each do |t| %></tr>
+          <tr><% @created_events.each do |t| %></tr>
             <td><%= t.name %></td>
             <td><%= t.location %></td>
             <td><%= t.date %></td>
             <td><%= t.creator.name %></td>
+            <td>
+               <% e.attendees.each do |a| %>
+                 <%= a.name %>,
+               <% end %>
+             </td>
           <% end %>
 
 

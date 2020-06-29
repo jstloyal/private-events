@@ -11,7 +11,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @user_events = @user.all
+    @created_events = @user.created_events
+    @upcoming_events = current_user.upcoming_events
+    @previous_events = current_user.previous_events
   end
 
   def create
@@ -22,6 +24,11 @@ class UsersController < ApplicationController
     # cookies[:name] = @user.name
     # cookies[:id] = @user.id
     redirect_to @user
+  end
+
+  def destroy
+    session.delete(:id)
+    @current_user = nil
   end
 
   private
