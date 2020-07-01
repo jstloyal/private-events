@@ -36,7 +36,7 @@ This rails project allows users to create events and then manage user signups. U
     This project is part of the Microverse curriculum in Ruby on Rails module!
     <br />
     <a href="https://github.com/jstloyal/private-events">
-      <img src="app/assets/images/private-event.png" alt="Microverse Logo" width="1000" height="400">
+      <img src="app/assets/images/private-events.png" alt="Microverse Logo" width="1000" height="400">
     </a><br />
     <a href="https://github.com/jstloyal/private-events"><strong>Explore the docs »</strong></a>
     <br />
