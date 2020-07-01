@@ -1,13 +1,13 @@
 module EventsHelper
   def attend_link(event)
+    a = invitation_path(event)
+    b = 'btn btn-xs btn-primary'
+    c = invitations_path(event)
     if session[:user_id]
       user = User.find(session[:user_id])
       invitations = user.invitations.map(&:attended_event_id)
-      if invitations.include?(event.id)
-        return link_to 'Unattend event', invitation_path(event), method: :delete, class: 'btn btn-xs btn-primary'
-      else
-        return link_to 'Attend event', invitations_path(event), method: :post, class: 'btn btn-xs btn-primary'
-      end
+      return link_to 'Unattend event', a, method: :delete, class: b if invitations.include?(event.id)
+      return link_to 'Attend event', c, method: :post, class: 'btn btn-xs btn-primary' if invitations.include?(event.id)
     end
     nil
   end
@@ -18,8 +18,7 @@ module EventsHelper
 
   def delete_link(event)
     c = { confirm: 'Are you sure you want to delete the event?' }
-    if session[:user_id]
-      link_to('Delete this event', event_path(event), method: :delete, data: c, class: 'btn btn-xs btn-danger')
-    end
+    b = event_path(event)
+    link_to('Delete this event', b, method: :delete, data: c, class: 'btn btn-xs btn-danger') if session[:user_id]
   end
 end
