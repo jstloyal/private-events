@@ -13,11 +13,13 @@ module EventsHelper
   end
 
   def edit_link(event)
-    return link_to 'Edit this event', edit_event_path(event), class: "btn btn-xs btn-primary" if session[:user_id]
+    return link_to 'Edit this event', edit_event_path(event), class: 'btn btn-xs btn-primary' if session[:user_id]
   end
-  
+
   def delete_link(event)
-    c = {confirm: "Are you sure you want to delete the event?"}
-    return link_to('Delete this event', event_path(event), method: :delete, data: c, class: "btn btn-xs btn-danger") if session[:user_id]
+    c = { confirm: 'Are you sure you want to delete the event?' }
+    if session[:user_id]
+      link_to('Delete this event', event_path(event), method: :delete, data: c, class: 'btn btn-xs btn-danger')
+    end
   end
 end
