@@ -1,12 +1,8 @@
 class UsersController < ApplicationController
+  before_action :require_login, except: %i[new create]
+
   def new
-    if session[:name].nil?
-      @user = User.new
-    else
-      @user = User.find(session[:id])
-      flash[:info] = 'You are already signed in'
-      redirect_to @user
-    end
+    @user = User.new
   end
 
   def index
@@ -14,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(params[:id])
+    @user = User.find(params[:id])
     @created_events = @user.created_events
     @upcoming_events = @user.upcoming_events
     @previous_events = @user.previous_events
@@ -22,20 +18,26 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.save
-    session[:name] = @user.name
-    session[:id] = @user.id
-    redirect_to @user
-  end
-
-  def destroy
-    session.delete(:id)
-    @current_user = nil
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to events_path
+    else
+      redirect_to new_user_path
+    end
   end
 
   private
 
   def user_params
     params.require(:user).permit(:name)
+  end
+
+  def require_login
+    if session[:id]
+      true
+    else
+      redirect_to new_session_path
+      false
+    end
   end
 end

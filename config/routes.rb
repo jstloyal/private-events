@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  root 'users#show'
-  resources :users, only: %i[new create show]
-  resources :events, only: %i[new create show index]
+  root 'sessions#new'
+  resources :users, only: %i[index new create show]
+  resources :events
   resources :sessions, only: %i[new create destroy]
+  resources :invitations, only: %i[create destroy]
 end

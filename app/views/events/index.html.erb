@@ -1,83 +1,59 @@
-<div class="jumbotron">
-  <div class="container">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Event name</th>
-          <th>Location</th>
-          <th>Event Date</th>
-          <th>Event Creator</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><% @all_upcoming_events.each do |t| %></tr>
-           <td><%= t.name %></td>
-           <td><%= t.location %></td>
-           <td><%= t.date %></td>
-           <td><%= t.creator.name %></td>
-           <td>
-             <% t.attendees.each do |a| %>
-               <%= a.name %>,
-             <% end %>
-           </td>
-         <% end %>
-      </tbody>
-    </table>
+<h1 align='center'>Listing all Events</h1>
 
-    <p>Upcoming events: </p>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Event name</th>
-          <th>Location</th>
-          <th>Event Date</th>
-          <th>Event Creator</th>
-          <th>Event Attendees</th>
-        </tr>
-      </thead>
-      <tbody>
-
-          <tr><% @upcoming_events.each do |t| %></tr>
-            <td><%= t.name %></td>
-            <td><%= t.location %></td>
-            <td><%= t.date %></td>
-            <td><%= t.creator.name %></td>
-            <td>
-              <% t.attendees.each do |a| %>
-                <%= a.name %>,
-              <% end %>
-            </td>
-          <% end %>
-
-      </tbody>
-    </table>
-
-  <p>Previous events: </p>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Event name</th>
-          <th>Location</th>
-          <th>Event Date</th>
-          <th>Event Creator</th>
-          <th>Event Attendees</th>
-        </tr>
-      </thead>
-      <tbody>
-
-          <tr><% @previous_events.each do |t| %></tr>
-            <td><%= t.name %></td>
-            <td><%= t.place %></td>
-            <td><%= t.date %></td>
-            <td><%= t.creator.name %></td>
-            <td>
-              <% t.attendees.each do |a| %>
-                <%= a.name %>,
-              <% end %>
-            </td>
-          <% end %>
-
-      </tbody>
-    </table>
+<% @upcoming_events.each do |t| %>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="well well-lg">
+        <div class="article-title">
+        <%= link_to t.name, event_path(t) %>
+        </div>
+        <div class="article-body">
+        <%= link_to t.description, event_path(t) %>
+        </div>
+        <div class="article-body">
+          <p>Location: <%= t.location %> | Date: <%= t.date %></p>
+          <div class="article-meta-details">
+            <small>Created by: <%= t.creator.name %>
+                                   
+            </small>
+          </div>
+        </div>
+        <div class="article-actions">
+          <%= link_to 'Edit this event', edit_event_path(t), class: "btn btn-xs btn-primary" %>
+          <%= link_to 'Delete this event', event_path(t), method: :delete, data: {confirm: "Are you sure you want to delete the event?"}, class: "btn btn-xs btn-danger" %>
+          <%= attend_link(t) %>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+<% end %>
+
+<h2 align='center> Past events </h2>
+
+<% @past_events.each do |t| %>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="well well-lg">
+        <div class="article-title">
+        <%= link_to t.name, event_path(t) %>
+        </div>
+        <div class="article-body">
+        <%= link_to t.description, event_path(t) %>
+        </div>
+        <div class="article-body">
+          <p>Location: <%= t.location %> | Date: <%= t.date %></p>
+          <div class="article-meta-details">
+            <small>Created by: <%= t.creator.name %>
+                                   
+            </small>
+          </div>
+        </div>
+        <div class="article-actions">
+          <%= link_to 'Edit this event', edit_event_path(t), class: "btn btn-xs btn-primary" %>
+          <%= link_to 'Delete this event', event_path(t), method: :delete, data: {confirm: "Are you sure you want to delete the event?"}, class: "btn btn-xs btn-danger" %>
+          <%= attend_link(t) %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

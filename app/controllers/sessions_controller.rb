@@ -1,15 +1,14 @@
 class SessionsController < ApplicationController
   def new
-    # empty
+    # new
   end
 
   def create
     @user = User.find_by_name(params[:session][:name])
     if @user
-      session[:id] = @user.id
-      session[:name] = @user.name
+      session[:user_id] = @user.id
       flash[:success] = "You have been succesfully signed in as #{@user.name}"
-      redirect_to @user
+      redirect_to events_path
     else
       flash[:warning] = 'There is no such user'
       render 'new'
@@ -17,10 +16,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.delete(:name)
-    session.delete(:id)
-    @current_user = nil
+    session[:user_id] = nil
     flash[:success] = 'You have been signed out succesfully'
-    redirect_to root_url
+    redirect_to new_session_path
   end
 end
