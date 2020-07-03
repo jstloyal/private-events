@@ -7,7 +7,7 @@
 
           <% if session[:user_id] %>
             <li><%= link_to "New event", new_event_path %></li>
-            <li><%= link_to "Signed in as #{current_user.name}", user_path(current_user) %></li>
+            <li><%= link_to "#{current_user.name}", user_path(current_user) %></li>
             <li><%= link_to "Sign out", session_path(0), method: :delete %></li>
           <% else %>
             <li><%= link_to "Sign in", new_session_path %></li>
