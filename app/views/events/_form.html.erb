@@ -1,7 +1,7 @@
-<% if @event.errors.any? %>
+<% if @events.errors.any? %>
   <p>The following errors prevented the event from getting created: </p>
   <ul>
-    <% @event.errors.full_messages.each do |msg| %>
+    <% @events.errors.full_messages.each do |msg| %>
     <li><%= msg %></li>
     <% end %>
   </ul>
