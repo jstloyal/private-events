@@ -1,4 +1,4 @@
-<h1 align='center'>Listing all Events</h1>
+<h2 align='center'>Upcoming Events</h2>
 
 <% @upcoming_events.each do |t| %>
   <div class="row">
@@ -13,9 +13,7 @@
         <div class="article-body">
           <p>Location: <%= t.location %> | Date: <%= t.date %></p>
           <div class="article-meta-details">
-            <small>Created by: <%= t.creator.name %>
-                                   
-            </small>
+            <small>Created by: <%= t.creator.name %></small>
           </div>
         </div>
         <div class="article-actions">
@@ -43,9 +41,7 @@
         <div class="article-body">
           <p>Location: <%= t.location %> | Date: <%= t.date %></p>
           <div class="article-meta-details">
-            <small>Created by: <%= t.creator.name %>
-                                   
-            </small>
+            <small>Created by: <%= t.creator.name %></small>
           </div>
         </div>
         <div class="article-actions">

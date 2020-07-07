@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    # new
+
   end
 
   def create
@@ -18,6 +18,6 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     flash[:success] = 'You have been signed out succesfully'
-    redirect_to new_session_path
+    redirect_to root_path
   end
 end

@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  before_action :require_login, except: %i[new create]
-
   def new
     @user = User.new
   end
@@ -12,8 +10,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @created_events = @user.created_events
-    @upcoming_events = @user.upcoming_events
-    @previous_events = @user.previous_events
+    @upcoming_events = @user.attended_events.all_upcoming_events
+    @past_events = @user.attended_events.all_past_events
   end
 
   def create
@@ -22,7 +20,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to events_path
     else
-      redirect_to new_user_path
+      render 'new'
     end
   end
 
@@ -32,12 +30,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name)
   end
 
-  def require_login
-    if session[:id]
-      true
-    else
-      redirect_to new_session_path
-      false
+  def require_same_user
+    if current_user != @user
+      flash[:danger] = 'You can only edit your own account'
+      redirect_to root_path
     end
   end
 end
