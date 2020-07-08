@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
   before_action :require_login, except: [:index]
-  before_action :require_same_user, only: %i[edit update destroy]
 
   def index
     @upcoming_events = Event.all_upcoming_events
@@ -17,7 +16,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = current_user.events.build(event_params)
+    @event = current_user.created_events.build(event_params)
     if @event.save
       flash[:success] = 'Event has been succesfully saved'
       redirect_to events_path
@@ -28,7 +27,7 @@ class EventsController < ApplicationController
   end
 
   def edit
-    # edit
+    @event = Event.find(params[:id])
   end
 
   def destroy
@@ -50,12 +49,5 @@ class EventsController < ApplicationController
       redirect_to new_session_path
       false
     end
-  end
-
-  def require_same_user
-    return unless current_user != @event.user
-
-    flash[:danger] = 'You can only edit and delete your own article'
-    redirect_to root_path
   end
 end
