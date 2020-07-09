@@ -1,0 +1,20 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to "Private Events", root_path, id: "logo"%>
+    <nav>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "All events", events_path %></li>
+
+          <% if session[:user_id] %>
+            <li><%= link_to "New event", new_event_path %></li>
+            <li><%= link_to "#{current_user.name}", user_path(current_user) %></li>
+            <li><%= link_to "Sign out", logout_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Sign in", login_path %></li>
+            <li><%= link_to "New user", new_user_path %></li>
+          <% end %>
+
+        </ul>
+      </nav>
+  </div>
+</header>

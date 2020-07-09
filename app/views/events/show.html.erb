@@ -1,0 +1,21 @@
+<h3 align='center'>Showing selected events</h3>
+
+<p>
+  Title: <%= @event.name %>
+</p>
+
+<p>
+  Description: <%= @event.description %>
+</p>
+
+<p>
+  Location: <%= @event.description %> | Date: <%= @event.date %>
+</p>
+
+<p>
+  Created by: <%= @event.creator.name %>
+</p>
+
+<%= link_to "Edit this event", edit_event_path(@event) %>
+<%= link_to "Back to event listing", event_path %>
+
